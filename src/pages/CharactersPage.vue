@@ -18,6 +18,7 @@ const scrollContainer = ref<HTMLElement | null>(null);
 const selectedLocationId = ref('');
 const searchName = ref('');
 const currentPage = ref(1);
+const locationFilterRef = ref();
 
 useInfiniteScroll(
     scrollContainer,
@@ -38,6 +39,7 @@ const handleSearch = async () => {
   characters.value = [];
   nextPageUrl.value = null;
   currentPage.value = 1;
+  locationFilterRef.value.clearLocation();
 
   try {
     await fetchCharacters(null, {name: searchName.value});
@@ -71,7 +73,7 @@ onMounted(async () => {
        class="h-screen w-full mx-auto overflow-y-auto py-8 px-12">
     <div class="flex flex-col md:flex-row mb-4 justify-between md:space-x-4">
       <SearchBar v-model="searchName" @search="handleSearch"/>
-      <LocationFilter @filter="handleLocationFilter"/>
+      <LocationFilter ref="locationFilterRef" @filter="handleLocationFilter"/>
     </div>
 
     <transition-group name="fade" tag="div" class="grid h-full shrink-0 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 grid-auto-rows-[1fr]">

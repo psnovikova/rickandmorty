@@ -19,6 +19,14 @@ const onLocationChange = () => {
   emit('filter', selectedLocation.value);
 };
 
+const clearLocation = () => {
+  selectedLocation.value = '';
+}
+
+defineExpose( {
+  clearLocation,
+})
+
 onMounted(fetchLocations);
 </script>
 
