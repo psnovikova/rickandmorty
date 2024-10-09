@@ -1,0 +1,10 @@
+@import './assets/tailwind.css';
+
+body {
+    background-color: rgb(17 24 39);
+}
+
+#characters-container {
+    max-height: 100vh; /* Фиксируем высоту, чтобы добавить скроллинг */
+    overflow-y: auto; /* Включаем вертикальный скролл */
+}
